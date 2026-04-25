@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>just for you</title>
     <style>
-        /* 1. 红蓝绿快速闪烁背景 */
         body {
             margin: 0;
             height: 100vh;
-            animation: flash 0.15s infinite alternate;
+            overflow: hidden;
+            animation: flash 1.5s infinite alternate; /* 变慢了，不刺眼 */
         }
 
         @keyframes flash {
@@ -19,34 +19,220 @@
             100% { background-color: red; }
         }
 
-        /* 2. 正中间金灿灿的文本 */
+        /* 金色光线容器 */
+        .rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* 单条金色光线 */
+        .ray {
+            position: absolute;
+            width: 2px;
+            height: 120%;
+            background: linear-gradient(to bottom, transparent, gold, transparent);
+            opacity: 0;
+            animation: rayMove 3s infinite;
+        }
+
+        /* 生成多条光线（不同位置和延迟） */
+        .ray:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .ray:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+        .ray:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+        .ray:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+        .ray:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+        .ray:nth-child(6) { left: 85%; animation-delay: 2.0s; }
+        .ray:nth-child(7) { left: 15%; animation-delay: 2.4s; }
+        .ray:nth-child(8) { left: 50%; animation-delay: 0.2s; }
+
+        @keyframes rayMove {
+            0%   { opacity: 0; top: -10%; }
+            20%  { opacity: 0.6; }
+            40%  { opacity: 0; }
+            100% { opacity: 0; top: 110%; }
+        }
+
+        /* 正中间金灿灿的文本 */
         .center-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: 10;
 
-            font-size: 4rem;
+            font-size: 6rem;              /* 字体更大 */
             font-weight: 900;
             color: gold;
-            text-shadow: 0 0 20px yellow, 0 0 40px orange;
-            text-align: center;          /* 文字居中 */
-            line-height: 1.5;            /* 行间距舒适 */
+            text-shadow: 0 0 30px yellow, 0 0 60px orange;
+            text-align: center;
+            line-height: 1.4;
             
-            animation: zoom 0.5s infinite alternate; /* 0.5s缩放一次 = 一秒2次 */
+            animation: zoom 0.5s infinite alternate;
         }
 
         @keyframes zoom {
             0%   { transform: translate(-50%, -50%) scale(1); }
             100% { transform: translate(-50%, -50%) scale(1.5); }
         }
+
+        /* 底部小字 */
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+
+            color: gold;
+            font-size: 0.9rem;
+            text-shadow: 0 0 8px orange;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
-    <div class="center-text">
-        热&nbsp;烈&nbsp;欢&nbsp;迎<br>
-        炉&nbsp;管&nbsp;大&nbsp;王
+    <!-- 金色光线 -->
+    <div class="rays">
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
     </div>
-    <!-- 上面这行里，“&nbsp;” 是空格，“<br>” 是换行，随便改字 -->
+
+    <!-- 主文字 -->
+    <div class="center-text">
+        <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金灿灿</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            animation: flash 1.5s infinite alternate; /* 变慢了，不刺眼 */
+        }
+
+        @keyframes flash {
+            0%   { background-color: red; }
+            33%  { background-color: blue; }
+            66%  { background-color: green; }
+            100% { background-color: red; }
+        }
+
+        /* 金色光线容器 */
+        .rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* 单条金色光线 */
+        .ray {
+            position: absolute;
+            width: 2px;
+            height: 120%;
+            background: linear-gradient(to bottom, transparent, gold, transparent);
+            opacity: 0;
+            animation: rayMove 3s infinite;
+        }
+
+        /* 生成多条光线（不同位置和延迟） */
+        .ray:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .ray:nth-child(2) { left: 25%; animation-delay: 0.4s; }
+        .ray:nth-child(3) { left: 40%; animation-delay: 0.8s; }
+        .ray:nth-child(4) { left: 55%; animation-delay: 1.2s; }
+        .ray:nth-child(5) { left: 70%; animation-delay: 1.6s; }
+        .ray:nth-child(6) { left: 85%; animation-delay: 2.0s; }
+        .ray:nth-child(7) { left: 15%; animation-delay: 2.4s; }
+        .ray:nth-child(8) { left: 50%; animation-delay: 0.2s; }
+
+        @keyframes rayMove {
+            0%   { opacity: 0; top: -10%; }
+            20%  { opacity: 0.6; }
+            40%  { opacity: 0; }
+            100% { opacity: 0; top: 110%; }
+        }
+
+        /* 正中间金灿灿的文本 */
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+
+            font-size: 6rem;              /* 字体更大 */
+            font-weight: 900;
+            color: gold;
+            text-shadow: 0 0 30px yellow, 0 0 60px orange;
+            text-align: center;
+            line-height: 1.4;
+            
+            animation: zoom 0.5s infinite alternate;
+        }
+
+        @keyframes zoom {
+            0%   { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.5); }
+        }
+
+        /* 底部小字 */
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+
+            color: gold;
+            font-size: 0.9rem;
+            text-shadow: 0 0 8px orange;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 金色光线 -->
+    <div class="rays">
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+        <div class="ray"></div>
+    </div>
+
+    <!-- 主文字 -->
+    <div class="center-text">
+        金灿灿<br>
+        大王
+    </div>
+
+    <!-- 底部署名 -->
+    <div class="footer">made by yoyo</div>
+</body>
+</html>
+    </div>
+
+    <!-- 底部署名 -->
+    <div class="footer">made by yoyo</div>
 </body>
 </html>
