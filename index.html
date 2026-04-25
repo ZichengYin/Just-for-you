@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>just for you</title>
+    <style>
+        /* 1. 红蓝绿快速闪烁背景 */
+        body {
+            margin: 0;
+            height: 100vh;
+            animation: flash 0.15s infinite alternate;
+        }
+
+        @keyframes flash {
+            0%   { background-color: red; }
+            33%  { background-color: blue; }
+            66%  { background-color: green; }
+            100% { background-color: red; }
+        }
+
+        /* 2. 正中间金灿灿的文本 */
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            font-size: 4rem;
+            font-weight: 900;
+            color: gold;
+            text-shadow: 0 0 20px yellow, 0 0 40px orange;
+            text-align: center;          /* 文字居中 */
+            line-height: 1.5;            /* 行间距舒适 */
+            
+            animation: zoom 0.5s infinite alternate; /* 0.5s缩放一次 = 一秒2次 */
+        }
+
+        @keyframes zoom {
+            0%   { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.5); }
+        }
+    </style>
+</head>
+<body>
+    <div class="center-text">
+        热&nbsp;烈&nbsp;欢&nbsp;迎<br>
+        炉&nbsp;管&nbsp;大&nbsp;王
+    </div>
+    <!-- 上面这行里，“&nbsp;” 是空格，“<br>” 是换行，随便改字 -->
+</body>
+</html>
